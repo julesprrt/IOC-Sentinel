@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>IOC Extractor – Liste blanche</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        :root {
+            --bg: #0d1117;
+            --elev: #161b22;
+            --line: #30363d;
+            --text: #c9d1d9;
+            --muted: #8b949e;
+            --accent: #7c4dff;
+            --btn: #21262d;
+            --btn-hover: #30363d;
+            --ok: #238636;
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --elev: #f7f8fa;
+            --line: #e6e8eb;
+            --text: #202124;
+            --muted: #5f6368;
+            --accent: #673ab7;
+            --btn: #f2f4f7;
+            --btn-hover: #e9edf2;
+            --ok: #188038;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0;
+            height: 100%
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: Inter, Segoe UI, Tahoma, sans-serif
+        }
+
+        .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            border-bottom: 1px solid var(--line);
+            background: var(--elev)
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800
+        }
+
+        .brand img {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        .icon-btn {
+            border: 1px solid var(--line);
+            background: var(--btn);
+            color: var(--text);
+            border-radius: 8px;
+            padding: 6px 10px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600
+        }
+
+        .icon-btn:hover {
+            background: var(--btn-hover)
+        }
+
+        .wrap {
+            padding: 16px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 12px
+        }
+
+        .card {
+            background: var(--elev);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 12px
+        }
+
+        .card h2 {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+            color: #79c0ff
+        }
+
+        textarea {
+            width: 100%;
+            height: 140px;
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 8px;
+            font-family: ui-monospace, Menlo, Consolas, "Courier New", monospace;
+            font-size: 12px
+        }
+
+        .hint {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 6px
+        }
+
+        .actions {
+            margin-top: 14px;
+            display: flex;
+            gap: 8px
+        }
+
+        button {
+            padding: 10px 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 800;
+            color: #fff
+        }
+
+        .save {
+            background: var(--ok)
+        }
+
+        .reset {
+            background: #d03a3a
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="top">
+        <div class="brand">
+            <img src="icone.png" alt="icon"><span>Liste blanche – IOC Extractor</span>
+        </div>
+        <div>
+            <button id="themeToggle" class="icon-btn">🌙 Mode sombre</button>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <p class="muted">Gérez ici les IOCs à ignorer. <strong>IP</strong> accepte CIDR (ex. <code>10.0.0.0/8</code>).
+            <strong>Domaines</strong> accepte joker de suffixe (ex. <code>*.radiofrance.fr</code>). Une entrée par
+            ligne.
+        </p>
+
+        <div class="grid">
+            <div class="card">
+                <h2>IPs</h2>
+                <textarea id="wl_ips"></textarea>
+                <div class="hint">Exemples : 127.0.0.1, 10.0.0.0/8, 192.168.0.0/16</div>
+            </div>
+
+            <div class="card">
+                <h2>Domaines</h2>
+                <textarea id="wl_domains"></textarea>
+                <div class="hint">Exemples : localhost, *.local, example.com</div>
+            </div>
+
+            <div class="card">
+                <h2>URLs</h2>
+                <textarea id="wl_urls"></textarea>
+                <div class="hint">Exemples : https://intranet.local/ , http://example.org/path</div>
+            </div>
+
+            <div class="card">
+                <h2>Emails</h2>
+                <textarea id="wl_emails"></textarea>
+                <div class="hint">Exemples : abuse@example.org</div>
+            </div>
+
+            <div class="card">
+                <h2>Fichiers</h2>
+                <textarea id="wl_files"></textarea>
+                <div class="hint">Exemples : PuTTY-setup.exe</div>
+            </div>
+
+            <div class="card">
+                <h2>Hashes</h2>
+                <textarea id="wl_hashes"></textarea>
+                <div class="hint">Exemples : d41d8cd98f00b204e9800998ecf8427e (MD5)</div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="save" class="save">💾 Enregistrer</button>
+            <button id="reset" class="reset">♻️ Réinitialiser par défaut</button>
+        </div>
+    </div>
+
+    <script src="whitelist.js"></script>
+</body>
+
+</html>

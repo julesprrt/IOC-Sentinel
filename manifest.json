@@ -1,0 +1,33 @@
+{
+    "manifest_version": 3,
+    "name": "IOC Extractor",
+    "version": "3.0",
+    "description": "Extract IOCs (IPs, domains, URLs, hashes, emails) from any webpage",
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "Extract IOCs"
+    },
+    "icons": {
+        "16": "icone.png",
+        "48": "icone.png",
+        "128": "icone.png"
+    }
+}

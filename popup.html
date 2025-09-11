@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>IOC Extractor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        :root {
+            --bg: #0d1117;
+            --elev: #161b22;
+            --line: #30363d;
+            --text: #c9d1d9;
+            --muted: #8b949e;
+            --accent: #7c4dff;
+            --accent-2: #5b8cff;
+            --ok: #238636;
+            --warn: #b18400;
+            --chip: #2d333b;
+            --btn: #21262d;
+            --btn-hover: #30363d;
+            --shadow: 0 8px 24px rgba(0, 0, 0, .25);
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --elev: #f7f8fa;
+            --line: #e6e8eb;
+            --text: #202124;
+            --muted: #5f6368;
+            --accent: #673ab7;
+            --accent-2: #1f6feb;
+            --ok: #188038;
+            --warn: #8d6a00;
+            --chip: #eef2f6;
+            --btn: #f2f4f7;
+            --btn-hover: #e9edf2;
+            --shadow: 0 8px 24px rgba(0, 0, 0, .08);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0;
+            height: 100%
+        }
+
+        body {
+            width: 760px;
+            height: 640px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Inter, Segoe UI, Tahoma, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Topbar */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--line);
+            background: linear-gradient(0deg, var(--elev), var(--elev));
+            box-shadow: var(--shadow)
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            letter-spacing: .2px
+        }
+
+        .brand img {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px
+        }
+
+        .brand span {
+            font-size: 14px
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .chip {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: var(--chip);
+            color: var(--muted);
+            border: 1px solid var(--line)
+        }
+
+        .icon-btn {
+            border: 1px solid var(--line);
+            background: var(--btn);
+            color: var(--text);
+            border-radius: 8px;
+            padding: 6px 10px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600
+        }
+
+        .icon-btn:hover {
+            background: var(--btn-hover)
+        }
+
+        .icon-btn.small {
+            padding: 4px 8px;
+            font-size: 12px
+        }
+
+        .toggle {
+            user-select: none
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--line);
+            flex-wrap: wrap
+        }
+
+        .tab {
+            padding: 8px 10px;
+            border-radius: 10px;
+            border: 1px solid var(--line);
+            background: var(--elev);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        .tab.active {
+            color: #fff;
+            background: linear-gradient(180deg, var(--accent), var(--accent-2));
+            border-color: transparent
+        }
+
+        /* Summary + Selectors */
+        .summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 14px;
+            gap: 10px
+        }
+
+        .summary .muted {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .sel-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        /* List */
+        .list {
+            flex: 1;
+            overflow: auto;
+            padding: 8px 14px
+        }
+
+        .card {
+            background: var(--elev);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 0
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-top: 1px solid var(--line)
+        }
+
+        .row:first-child {
+            border-top: none
+        }
+
+        .row:hover {
+            background: rgba(0, 0, 0, .05)
+        }
+
+        .ioc {
+            flex: 1;
+            word-break: break-all;
+            font-size: 13px
+        }
+
+        .tag {
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: var(--chip);
+            color: var(--text);
+            border: 1px solid var(--line)
+        }
+
+        .vt {
+            text-decoration: none;
+            font-weight: 700;
+            border: 1px solid var(--line);
+            padding: 4px 8px;
+            border-radius: 8px;
+            background: var(--btn);
+            color: var(--accent-2)
+        }
+
+        .vt:hover {
+            background: var(--btn-hover)
+        }
+
+        /* Bottom bar */
+        .bottombar {
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 14px;
+            border-top: 1px solid var(--line);
+            background: var(--elev);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-weight: 800;
+            cursor: pointer;
+            color: #fff
+        }
+
+        .btn.copy {
+            background: var(--ok)
+        }
+
+        .btn.csv {
+            background: #8250df
+        }
+
+        .btn.json {
+            background: #1f6feb
+        }
+
+        .btn.vt {
+            background: #5b8cff
+        }
+
+        .btn.kql {
+            background: var(--warn)
+        }
+
+        .btn.hunt {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2))
+        }
+
+        .btn:active {
+            transform: translateY(1px)
+        }
+
+        .hint {
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        /* Hide scrollbar on WebKit for cleaner look */
+        .list::-webkit-scrollbar {
+            height: 8px;
+            width: 8px
+        }
+
+        .list::-webkit-scrollbar-thumb {
+            background: var(--line);
+            border-radius: 8px
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="brand">
+            <img src="icone.png" alt="icon" />
+            <span>IOC Extractor</span>
+            <span class="chip" id="totalChip">—</span>
+        </div>
+        <div class="controls">
+            <button id="openWhitelist" class="icon-btn small">Liste blanche</button>
+            <button id="themeToggle" class="icon-btn small toggle">🌙 Mode sombre</button>
+        </div>
+    </div>
+
+    <div class="tabs" id="tabs"></div>
+
+    <div class="summary">
+        <div class="muted" id="summary">Analyse en cours…</div>
+        <div class="sel-actions">
+            <button id="selectAll" class="icon-btn small">Tout sélectionner</button>
+            <button id="clearSel" class="icon-btn small">Tout désélectionner</button>
+        </div>
+    </div>
+
+    <div class="list">
+        <div class="card" id="list"></div>
+    </div>
+
+    <div class="bottombar">
+        <div class="hint" id="selCount">0 sélection(s)</div>
+        <div class="actions">
+            <button class="btn copy" id="copyBtn">📋 Copier</button>
+            <button class="btn csv" id="csvBtn">📑 CSV</button>
+            <button class="btn json" id="jsonBtn">💾 JSON</button>
+            <button class="btn vt" id="vtBtn">🔎 VirusTotal</button>
+            <button class="btn kql" id="kqlBtn">⚙️ KQL</button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+    <div id="toastContainer" style="position:fixed;bottom:20px;right:20px;z-index:9999;"></div>
+
+</body>
+
+</html>
