@@ -23,7 +23,7 @@ Fini le copier-coller manuel — obtenez des IOCs propres, prêts à être expor
 ✅ **Gestion & actions IOC**  
 - Copier, exporter **CSV/JSON**  
 - Ouvrir directement dans **VirusTotal**  
-- Générer des requêtes **KQL prêtes à l’emploi** pour Microsoft Defender / Sentinel  
+- Générer des requêtes **KQL prêtes à l’emploi** pour Microsoft Defender / Sentinel pour détecter rapidement si ces IOCs ont étés détectés sur votre SI. 
 
 ✅ **Gestionnaire de liste blanche**  
 - Exclure les IOCs connus légitimes (IPs, domaines, URLs, hashes, emails, fichiers)  
@@ -96,6 +96,7 @@ Licence interne / usage SOC.
 
 Les pull requests et suggestions de fonctionnalités sont bienvenues !  
 N’hésitez pas à ouvrir une issue si vous trouvez un bug ou avez une idée 💡.
+
 
 
 
