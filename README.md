@@ -74,6 +74,8 @@ Fini le copier-coller manuel — obtenez des IOCs propres, prêts à être expor
 ## 📸 Captures d’écran
 
 <img width="788" height="612" alt="image" src="https://github.com/user-attachments/assets/1bc1e585-206f-46f3-963f-56e251090623" />
+<img width="3399" height="448" alt="image" src="https://github.com/user-attachments/assets/d3245e9d-0cfe-4bb6-9000-14f81b1fdc74" />
+
 
 
 ---
@@ -89,4 +91,5 @@ Licence interne / usage SOC.
 
 Les pull requests et suggestions de fonctionnalités sont bienvenues !  
 N’hésitez pas à ouvrir une issue si vous trouvez un bug ou avez une idée 💡.
+
 
