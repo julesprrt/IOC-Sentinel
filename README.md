@@ -69,18 +69,12 @@ Fini le copier-coller manuel — obtenez des IOCs propres, prêts à être expor
 
 ---
 
-## 🛠️ Roadmap
-
-- [ ] Support SHA-512 / NTLM hashes  
-- [ ] Génération de règles Sigma / YARA  
-- [ ] Intégration API MISP / OpenCTI  
-- [ ] Mode collaboratif (partage de whitelist en équipe)  
-
 ---
 
 ## 📸 Captures d’écran
 
-*(ajoutez ici des captures de votre UI popup + whitelist + logo pirate)*
+<img width="788" height="612" alt="image" src="https://github.com/user-attachments/assets/1bc1e585-206f-46f3-963f-56e251090623" />
+
 
 ---
 
@@ -95,3 +89,4 @@ Licence interne / usage SOC.
 
 Les pull requests et suggestions de fonctionnalités sont bienvenues !  
 N’hésitez pas à ouvrir une issue si vous trouvez un bug ou avez une idée 💡.
+
