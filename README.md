@@ -50,7 +50,7 @@ Fini le copier-coller manuel — obtenez des IOCs propres, prêts à être expor
 ### Manuelle
 1. Clonez ce dépôt :  
    ```bash
-   git clone https://github.com/YOUR_GITHUB_USERNAME/ioc-sentinel.git
+   git clone https://github.com/julesprrt/ioc-sentinel.git
    ```
 2. Ouvrez **chrome://extensions/** (Chrome) ou **edge://extensions/** (Edge).  
 3. Activez le **Mode développeur**.  
@@ -96,6 +96,7 @@ Licence interne / usage SOC.
 
 Les pull requests et suggestions de fonctionnalités sont bienvenues !  
 N’hésitez pas à ouvrir une issue si vous trouvez un bug ou avez une idée 💡.
+
 
 
 
