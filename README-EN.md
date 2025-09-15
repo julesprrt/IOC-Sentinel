@@ -50,7 +50,7 @@ No more manual copy-paste — get clean IOCs, ready to export or hunt in your SI
 ### Manual
 1. Clone this repository:  
    ```bash
-   git clone https://github.com/YOUR_GITHUB_USERNAME/ioc-sentinel.git
+   git clone https://github.com/julesprrt/ioc-sentinel.git
    ```
 2. Open **chrome://extensions/** (Chrome) or **edge://extensions/** (Edge).  
 3. Enable **Developer mode**.  
@@ -95,3 +95,4 @@ Adapt according to your organization’s needs.
 
 Pull requests and feature requests are welcome!  
 Feel free to open an issue if you spot a bug or have an idea 💡.
+
